@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('default');
 });
+// How to add a new route
+//          URL         Controller
+Route::get('/welcome', [WelcomeController::class, 'index']);
