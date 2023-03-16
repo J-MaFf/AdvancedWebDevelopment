@@ -22,5 +22,8 @@ Route::get('/', function () {
 //          URL         Controller
 Route::get('/welcome', [WelcomeController::class, 'index']);
 
-// The following route 
-Route::get('/coursesbysubject', [CourseController::class, 'coursesbysubject']);
+// The following route shows all courses of a given subject using SQL. In this case, COMPSCI
+Route::get('/coursesbysubjectUsingSQL', [CourseController::class, 'coursesbysubjectUsingSQL']);
+
+// The following route shows all courses of a given subject using Eloquent ORM. In this case, all subjects
+Route::get('/coursesBySubjectUsingEloquentORM', [CourseController::class, 'coursesBySubjectUsingEloquentORM']);
