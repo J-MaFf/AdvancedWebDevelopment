@@ -13,11 +13,13 @@ class WelcomeModel extends Model
     public $course = 'COMPSCI 482';
 
     // The folowing methods retrieve name and course from the WelcomeModel class
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function getCourse() {
+    public function getCourse()
+    {
         return $this->course;
     }
 }

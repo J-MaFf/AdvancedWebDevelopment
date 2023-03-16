@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,6 @@ Route::get('/', function () {
 // How to add a new route
 //          URL         Controller
 Route::get('/welcome', [WelcomeController::class, 'index']);
+
+// The following route 
+Route::get('/coursesbysubject', [CourseController::class, 'coursesbysubject']);
