@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::get('/uww', function () {
+Route::get('/', function () { // This is the default route (the homepage)
     return view('uww');
 });
+
+Route::get('/coursesbysubject/{subject}', [CourseController::class, 'coursesbysubject']);
+
+Route::get('/coursesbysubject', [CourseController::class, 'coursesbysubject']);
