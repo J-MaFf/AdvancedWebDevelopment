@@ -12,32 +12,35 @@ class CourseController extends Controller
 {
     public function coursesbysubject(Request $request)
     {
-
-        $subjects = DB::select("select subject, full_name  from subjects order by subject");
+        // This is the SQL statement that is used to select the subject from the dropdown menu
+        $subjects = DB::select("SELECT subject FROM subjects ORDER by subject");
 
         /*  If you use Eloquent ORM, then you may use the following statement:
-            $subjects = Subject::select('subject', 'full_name')->orderby('subject')->get();
+            $subjects = Subject::select('subject', number', 'title', 'credits')->orderBy('subject')->get();
         */
         // Read the subject using the URL parameter
         $subject = $request->subject;
 
         $courses = [];
         if (isset($subject)) {
-            $courses = DB::select("select subject, number, from schedules where subject = :subject order by number", ['subject' => $subject]);
+            $courses = DB::select('SELECT subject, number, title, credits FROM courses WHERE subject = ? ORDER by number', [$subject]);
+
             /* Eloquent ORM statement
                 $courses = Course::select('subject', 'number', 'title', 'credits')->where('subject', $subject)->orderBy('number')->get();
             */
         }
+        $buttonText = $subject;
         
-        return view('course', ['subject' => $subject, 'courses' => $courses, 'subjects' => $subjects]);
+        return view('course', ['subjects' => $subjects, 'subject' => $subject, 'courses' => $courses, 'buttonText' => $buttonText]);
         
     }
 
-    public function allCourses(){
-        $courses = DB::select("select subject, number, from schedules order by number", ['subject' => $subject]);
-        /* Eloquent ORM statement
-            $courses = Course::select('subject', 'number', 'title', 'credits')->orderBy('number')->get();
-        */
-        return view('course', ['courses' => $courses]);
+    // Show all courses
+    public function allcourses()
+    {
+        $subjects = DB::select("SELECT subject FROM subjects ORDER by subject");
+        $courses = DB::select('SELECT subject, number, title, credits FROM courses ORDER BY subject, number');
+        $buttonText = 'All Courses';
+        return view('course', ['subjects' => $subjects, 'subject' => '', 'courses' => $courses, 'buttonText' => $buttonText]);
     }
 }

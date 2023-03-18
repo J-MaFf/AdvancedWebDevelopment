@@ -5,35 +5,41 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <h1>Course Catalog</h1>
+                <h1>Schedule of Classes</h1>
                 <div class="dropdown">
+                    
                     <button class="btn btn-secondary dropdown-toggle" style="background-color: aliceblue; color: black" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{$buttonText ?? 'Select a Subject'}}
-
+                        {{$buttonText ?? 'Select a Subject' }} 
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        @foreach($subjects as $s)
-                        <li><a class="dropdown-item" href="{{ url('/coursesbysubject', ['subject' => $s->subject]) }}">{{ $s->subject }}</a></li>
-                        @endforeach
 
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                        @foreach($subjects as $s)
+                        <li><a class="dropdown-item" href="{{ url('/schedule', ['subject' => $s->subject]) }}">{{ $s->subject}}</a></li>
+                        @endforeach
                     </ul>
+
+
                 </div>
-                <h3>List of {{$subject}} Courses</h3>
+                <h3>List of {{$buttonText}} Schedules</h3>
 
                 <table class="table">
                     <thead>
                         <tr>
                             <th scope="col">Course</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Credits</th>
+                            <th scope="col">Section</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Instructor</th>
+                            <th scope="col">Location</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($courses as $c)
                         <tr>
                             <td>{{ $c->subject }} {{ $c->number}}</td>
-                            <td>{{ $c->title}}</td>
-                            <td>{{$c->credits}}</td>
+                            <td>{{ $c->section}}</td>
+                            <td>{{$c->time}}</td>
+                            <td>{{$c->instructor}}</td>
+                            <td>{{$c->location}}</td>
                         </tr>
                         @endforeach
                     </tbody>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,8 @@ Route::get('/', function () { // This is the default route (the homepage)
 
 Route::get('/coursesbysubject/{subject}', [CourseController::class, 'coursesbysubject']);
 
-Route::get('/coursesbysubject', [CourseController::class, 'coursesbysubject']);
+Route::get('/coursesbysubject', [CourseController::class, 'allcourses']);
+
+Route::get('/schedule', [ScheduleController::class, 'scheduleOfAllClasses']);
+
+Route::get('/schedule/{subject}', [ScheduleController::class, 'schedulebysubject']);
