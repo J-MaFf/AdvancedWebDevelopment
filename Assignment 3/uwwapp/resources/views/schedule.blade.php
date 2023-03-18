@@ -7,9 +7,9 @@
             <div class="col-12">
                 <h1>Schedule of Classes</h1>
                 <div class="dropdown">
-                    
+
                     <button class="btn btn-secondary dropdown-toggle" style="background-color: aliceblue; color: black" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                        {{$buttonText ?? 'Select a Subject' }} 
+                        {{$buttonText ?? 'Select a Subject' }}
                     </button>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
@@ -20,7 +20,7 @@
 
 
                 </div>
-                <h3>List of {{$buttonText}} Schedules</h3>
+                <h3>List of {{$subject}} Course Schedules</h3>
 
                 <table class="table">
                     <thead>

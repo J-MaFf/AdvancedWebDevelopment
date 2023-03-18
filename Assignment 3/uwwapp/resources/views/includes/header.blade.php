@@ -26,7 +26,10 @@
     }
 
     td:nth-child(1),
-    td:nth-child(2) {
+    td:nth-child(2),
+    td:nth-child(3),
+    td:nth-child(4),
+    td:nth-child(5) {
       border-right: 1px solid white;
     }
 

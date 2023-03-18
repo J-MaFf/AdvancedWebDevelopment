@@ -40,6 +40,7 @@ class ScheduleController extends Controller
     public function scheduleOfAllClasses(){
         // This is the SQL statement that is used to select the subject from the dropdown menu
         $subjects = DB::select("SELECT subject FROM subjects ORDER by subject");
+        $names = DB::select("SELECT full_name FROM subjects ORDER by subject");
 
         /*  If you use Eloquent ORM, then you may use the following statement:
             $subjects = Subject::select('subject', number', 'title', 'credits')->orderBy('subject')->get();
@@ -49,7 +50,7 @@ class ScheduleController extends Controller
 
         $buttonText = "Select Subject";
 
-        return view('schedule', ['subjects' => $subjects, 'subject' => '', 'courses' => $courses, 'buttonText' => $buttonText]);
+        return view('schedule', ['subjects' => $subjects, 'names' => $names, 'subject' => '', 'courses' => $courses, 'buttonText' => $buttonText]);
 
     }
 }
