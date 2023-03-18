@@ -13,8 +13,8 @@
                     </button>
 
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                        @foreach($subjects as $s)
-                        <li><a class="dropdown-item" href="{{ url('/schedule', ['subject' => $s->subject]) }}">{{ $s->subject}}</a></li>
+                        @foreach($subjects as $index=>$s)
+                        <li><a class="dropdown-item" href="{{ url('/schedule', ['subject' => $s->subject]) }}">{{ $s->subject . ': ' . $names[$index]->full_name}}</a></li>
                         @endforeach
                     </ul>
 
