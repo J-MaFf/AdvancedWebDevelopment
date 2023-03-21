@@ -1,8 +1,7 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,14 +15,17 @@ use App\Http\Controllers\CourseController;
 */
 
 Route::get('/', function () {
-    return view('default');
+    return view('welcome');
 });
-// How to add a new route
-//          URL         Controller
-Route::get('/welcome', [WelcomeController::class, 'index']);
 
-// The following route shows all courses of a given subject using SQL. In this case, COMPSCI
-Route::get('/coursesbysubjectUsingSQL', [CourseController::class, 'coursesbysubjectUsingSQL']);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-// The following route shows all courses of a given subject using Eloquent ORM. In this case, all subjects
-Route::get('/coursesBySubjectUsingEloquentORM', [CourseController::class, 'coursesBySubjectUsingEloquentORM']);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
