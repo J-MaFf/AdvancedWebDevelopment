@@ -18,11 +18,11 @@
                 </thead>
                 <tbody>
                     @foreach ($courses as $course)
-                    <tr>
-                        <td>{{ $course->subject}} {{$course->number}} </td>
-                        <td>{{ $course->title}}</td>
-                        <td>{{ $course->credits}}</td>
-                    </tr>
+                        <tr>
+                            <td>{{ $course->subject }} {{ $course->number }} </td>
+                            <td>{{ $course->title }}</td>
+                            <td>{{ $course->credits }}</td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -30,3 +30,4 @@
         </div>
     </div>
 </x-app-layout>
+

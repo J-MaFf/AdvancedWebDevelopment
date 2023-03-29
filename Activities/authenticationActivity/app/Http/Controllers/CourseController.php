@@ -12,10 +12,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = DB::table('courses')->paginate(20);
-        return view('courses.index', ['courses' => $courses]);
+        $courses = DB::table("courses")->paginate(20);
+        return view("courses.index", ["courses" => $courses]);
     }
-
 
     /**
      * Show the form for creating a new resource.
