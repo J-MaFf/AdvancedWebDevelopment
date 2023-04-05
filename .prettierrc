@@ -1,5 +1,6 @@
 {
     "parser": "php",
+    "printWidth": 120,
     "overrides": [
         {
             "files": ["*.blade.php"],
