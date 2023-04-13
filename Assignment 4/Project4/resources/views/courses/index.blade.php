@@ -1,12 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Courses') }}
+            <a href="{{ route('courses.index') }}">{{ __('Courses') }}</a>
+
         </h2>
     </x-slot>
 
     <div class="py-12">
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            UserId: {{ $id }} <br>
             <a href="{{ route('courses.create') }}">+ New Course </a>
             <table class="table">
                 <thead>

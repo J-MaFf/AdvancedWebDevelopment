@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Course;
 
@@ -14,8 +15,10 @@ class CourseController extends Controller
      */
     public function index()
     {
+        //$courses = DB::select('select * from `courses`');
         $courses = DB::table("courses")->paginate(20);
-        return view("courses.index", ["courses" => $courses]);
+        $id = Auth::id();
+        return view("courses.index", ["courses" => $courses, "id" => $id]);
     }
 
     /**
@@ -42,7 +45,7 @@ class CourseController extends Controller
 
         // Save the data
         DB::insert(
-            'insert into `courses` (subject, number, title, description, credits, prereq)
+            'insert into `courses` (subject, number, title, description, credits, prereq) 
         values (:subject, :number, :title, :description, :credits, :prereq) ',
             [
                 "subject" => $request->subject,
@@ -90,7 +93,7 @@ class CourseController extends Controller
 
         // Update edited data
         DB::update(
-            'update `courses` set
+            'update `courses` set 
                subject = :subject,
                number = :number,
                title = :title,
