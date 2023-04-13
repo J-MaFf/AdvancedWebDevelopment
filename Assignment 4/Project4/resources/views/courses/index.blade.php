@@ -2,7 +2,6 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <a href="{{ route('courses.index') }}">{{ __('Courses') }}</a>
-
         </h2>
     </x-slot>
 
@@ -27,7 +26,8 @@
                 <tbody>
                     @foreach ($courses as $course)
                         <tr>
-                            <td>{{ $course->subject }} {{ $course->number }}</td>
+                            <td><a href="{{ route('courses.show', $course->id) }}">{{ $course->subject }}
+                                    {{ $course->number }} </a></td>
                             <td>{{ $course->title }}</td>
                             <td>{{ $course->credits }}</td>
                             <td>

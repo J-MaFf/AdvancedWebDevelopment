@@ -15,7 +15,6 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //$courses = DB::select('select * from `courses`');
         $courses = DB::table("courses")->paginate(20);
         $id = Auth::id();
         return view("courses.index", ["courses" => $courses, "id" => $id]);

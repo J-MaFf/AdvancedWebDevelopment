@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,8 @@ use App\Http\Controllers\CourseController;
 */
 
 Route::resource("courses", CourseController::class)->middleware(["auth"]);
+
+Route::resource("subjects", SubjectController::class)->middleware(["auth"]);
 
 Route::get("/", function () {
     return view("welcome");
