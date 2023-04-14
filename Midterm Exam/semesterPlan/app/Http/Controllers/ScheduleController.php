@@ -3,54 +3,62 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Course;
-use App\Models\Subject;
-use App\Models\Schedule;
-use Illuminate\Support\Facades\DB;
 
 class ScheduleController extends Controller
 {
-
-    public function schedulebysubject(Request $request){
-        // This is the SQL statement that is used to select the subject from the dropdown menu
-        $subjects = DB::select("SELECT subject FROM subjects ORDER by subject");
-        $names = DB::select("SELECT full_name FROM subjects ORDER by subject");
-
-        /*  If you use Eloquent ORM, then you may use the following statement:
-            $subjects = Subject::select('subject', number', 'title', 'credits')->orderBy('subject')->get();
-        */
-
-        // Read the subject using the URL parameter
-        $subject = $request->subject;
-        
-
-        $courses = [];
-        if (isset($subject)) {
-            $courses = DB::select('SELECT subject, number, section, time, instructor, location FROM schedules WHERE subject = ? ORDER by number', [$subject]);
-            $full_name = DB::select('SELECT full_name FROM subjects WHERE subject = ?', [$subject]);
-            /* Eloquent ORM statement
-                $courses = Course::select('subject', 'number', 'title', 'credits')->where('subject', $subject)->orderBy('number')->get();
-            */
-        }
-        $buttonText = $subject . ": " . $full_name[0]->full_name;
-        
-        return view('schedule', ['subjects' => $subjects, 'names' => $names, 'subject' => $subject, 'full_name' => $full_name, 'courses' => $courses, 'buttonText' => $buttonText]);
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
     }
 
-    public function scheduleOfAllClasses(){
-        // This is the SQL statement that is used to select the subject from the dropdown menu
-        $subjects = DB::select("SELECT subject FROM subjects ORDER by subject");
-        $names = DB::select("SELECT full_name FROM subjects ORDER by subject");
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
 
-        /*  If you use Eloquent ORM, then you may use the following statement:
-            $subjects = Subject::select('subject', number', 'title', 'credits')->orderBy('subject')->get();
-        */
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
-        $courses = DB::select('SELECT subject, number, section, time, instructor, location FROM schedules ORDER BY subject, number');
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
 
-        $buttonText = "Select Subject";
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
 
-        return view('schedule', ['subjects' => $subjects, 'names' => $names, 'subject' => '', 'courses' => $courses, 'buttonText' => $buttonText]);
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
 
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
     }
 }

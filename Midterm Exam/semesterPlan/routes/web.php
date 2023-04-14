@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\SemesterplanController;
 use App\Http\Controllers\ScheduleController;
 
 /*
@@ -15,18 +17,24 @@ use App\Http\Controllers\ScheduleController;
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
+Route::resource("courses", CourseController::class);
+Route::resource("schedules", ScheduleController::class);
+Route::resource("semesterplans", SemesterplanController::class);
+
+Route::get("/", function () {
+    return view("uww");
 });
 
-Route::get('/', function () { // This is the default route (the homepage)
-    return view('uww');
+Route::get("/dashboard", function () {
+    return view("uww");
+})
+    ->middleware(["auth", "verified"])
+    ->name("dashboard");
+
+Route::middleware("auth")->group(function () {
+    Route::get("/profile", [ProfileController::class, "edit"])->name("profile.edit");
+    Route::patch("/profile", [ProfileController::class, "update"])->name("profile.update");
+    Route::delete("/profile", [ProfileController::class, "destroy"])->name("profile.destroy");
 });
 
-Route::get('/coursesbysubject/{subject}', [CourseController::class, 'coursesbysubject']);
-
-Route::get('/coursesbysubject', [CourseController::class, 'allcourses']);
-
-Route::get('/schedule', [ScheduleController::class, 'scheduleOfAllClasses']);
-
-Route::get('/schedule/{subject}', [ScheduleController::class, 'schedulebysubject']);
+require __DIR__ . "/auth.php";
