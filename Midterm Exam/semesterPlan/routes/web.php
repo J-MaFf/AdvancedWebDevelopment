@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
+
+Route::get('/', function () { // This is the default route (the homepage)
+    return view('uww');
+});
+
+Route::get('/coursesbysubject/{subject}', [CourseController::class, 'coursesbysubject']);
+
+Route::get('/coursesbysubject', [CourseController::class, 'allcourses']);
+
+Route::get('/schedule', [ScheduleController::class, 'scheduleOfAllClasses']);
+
+Route::get('/schedule/{subject}', [ScheduleController::class, 'schedulebysubject']);
