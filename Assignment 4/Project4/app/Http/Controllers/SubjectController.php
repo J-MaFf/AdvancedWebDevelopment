@@ -15,17 +15,10 @@ class SubjectController extends Controller
      */
     public function index()
     {
-        $subjects = DB::table("courses")->get("subject");
-        $uniqueSubjects = [];
-        // Remove duplicate subjects
-        foreach ($subjects as $subject) {
-            if (!in_array($subject, $uniqueSubjects)) {
-                $uniqueSubjects[] = $subject;
-            }
-        }
+        $subjects = DB::table("subjects")->paginate(20);
 
         $id = Auth::id();
-        return view("subjects.index", ["subjects" => $uniqueSubjects, "id" => $id]);
+        return view("subjects.index", ["subjects" => $subjects, "id" => $id]);
     }
 
     /**
@@ -33,7 +26,7 @@ class SubjectController extends Controller
      */
     public function create()
     {
-        //
+        return view("subjects.create");
     }
 
     /**
@@ -41,31 +34,60 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Define validation rules
+        $request->validate([
+            "id" => "required",
+            "subject" => "required",
+            "full_name" => "required",
+        ]);
+
+        // save the data
+        DB::insert("insert into `subjects` (id, subject, full_name) values (:id, :subject, :full_name)", [
+            "id" => $request->id,
+            "subject" => $request->subject,
+            "full_name" => $request->full_name,
+        ]);
+
+        // Return the list of subjects
+        return to_route("subjects.index")->with("status", "Subject created successfully");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Subject $subject)
     {
-        //
+        return view("subjects.show", ["subject" => $subject]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Subject $subject)
     {
-        //
+        return view("subjects.edit", ["subject" => $subject]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Subject $subject)
     {
-        //
+        // Define validation rules
+        $request->validate([
+            "subject" => "required",
+            "full_name" => "required",
+        ]);
+
+        // save the data
+        DB::update("update `subjects` set subject = :subject, full_name = :full_name WHERE id = :id", [
+            "subject" => $request->subject,
+            "full_name" => $request->full_name,
+            "id" => $subject->id,
+        ]);
+
+        // Return the list of subjects
+        return to_route("subjects.show")->with("status", "Subject updated successfully");
     }
 
     /**
@@ -73,6 +95,7 @@ class SubjectController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::delete("delete from `subjects` where id = :id", ["id" => $id]);
+        return to_route("subjects.index")->with("status", "Subject deleted successfully");
     }
 }

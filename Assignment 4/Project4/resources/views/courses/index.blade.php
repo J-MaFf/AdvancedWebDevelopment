@@ -25,14 +25,17 @@
                 </thead>
                 <tbody>
                     @foreach ($courses as $course)
+                        @php
+                            $href = route('courses.show', $course->id);
+                        @endphp
                         <tr>
-                            <td><a href="{{ route('courses.show', $course->id) }}">{{ $course->subject }}
+                            <td><a href="{{ $href }}">{{ $course->subject }}
                                     {{ $course->number }} </a></td>
-                            <td>{{ $course->title }}</td>
-                            <td>{{ $course->credits }}</td>
+                            <td><a href="{{ $href }}">{{ $course->title }}</a></td>
+                            <td><a href="{{ $href }}">{{ $course->credits }}</a></td>
                             <td>
-                                <a href="{{ route('courses.show', $course->id) }}" class="btn btn-link">Update</a>
-                                <form method="post" action="{{ route('courses.destroy', $course->id) }}">
+                                <a href="{{ $href }}" class="btn btn-link">Update</a>
+                                <form method="post" action="{{ $href }}">
                                     @method('delete')
                                     @csrf
                                     <x-primary-button

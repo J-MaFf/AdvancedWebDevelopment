@@ -14,7 +14,7 @@
                 <!-- Subject -->
                 <div>
                     <x-input-label for="subject" :value="__('Subject')" />
-                    <x-text-input id="subject" class="block mt-1 w-full" type="text" name="subject" :value="old('subject')"
+                    <x-textarea id="subject" class="block mt-1 w-full" type="text" name="subject" :value="old('subject')"
                         autofocus />
                     @error('subject')
                         <div class='alert alert-danger'>{{ $message }}</div>
@@ -24,7 +24,7 @@
                 <!-- Number -->
                 <div>
                     <x-input-label for="number" :value="__('Number')" />
-                    <x-text-input id="number" class="block mt-1 w-full" type="text" name="number"
+                    <x-textarea id="number" class="block mt-1 w-full" type="text" name="number"
                         :value="old('number')" />
                     @error('number')
                         <div class='alert alert-danger'>{{ $message }}</div>
@@ -52,7 +52,7 @@
                 <!-- Credits -->
                 <div>
                     <x-input-label for="credits" :value="__('Credits')" />
-                    <x-text-input id="credits" class="block mt-1 w-full" name="credits" :value="old('credits')" />
+                    <x-textarea id="credits" class="block mt-1 w-full" name="credits" :value="old('credits')" />
                     @error('credits')
                         <div class='alert alert-danger'>{{ $message }}</div>
                     @enderror

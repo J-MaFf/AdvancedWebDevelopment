@@ -11,7 +11,9 @@
                 <div class="p-6 text-black-900 dark:text-black-100">
                     {{ __("You're logged in!") }} <br>
                     <button class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-4 rounded">
-                        <a href="{{ route('courses.index') }}">{{ __('Courses') }}</a>
+                        <a href="{{ route('courses.index') }}">{{ __('Courses') }} </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{{ route('subjects.index') }}">{{ __('Subjects') }} </a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    </button>
                 </div>
             </div>
         </div>
