@@ -1,26 +1,26 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <a href="{{ route('courses.index') }}">{{ __('Courses') }}</a>
+            <a href="{{ url('/') }}">{{ __('Home') }}</a> &nbsp; &nbsp; &nbsp; &nbsp;
+            <a href="{{ route('courses.index') }}">{{ __('Course Catalog') }}</a>
         </h2>
+        @include('includes.style')
     </x-slot>
 
     <div class="py-12">
         @if (session('status'))
-            <div class="alert alert-success">
+            <div class="courseChangeSuccess">
                 {{ session('status') }}
             </div>
         @endif
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            UserId: {{ $id }} <br>
-            <a href="{{ route('courses.create') }}">+ New Course </a>
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-10">
             <table class="table">
                 <thead>
                     <tr>
                         <th> Course</th>
                         <th>Title</th>
                         <th>Credits</th>
-                        <th>Action</th>
+                        <th>Description</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,17 +33,9 @@
                                     {{ $course->number }} </a></td>
                             <td><a href="{{ $href }}">{{ $course->title }}</a></td>
                             <td><a href="{{ $href }}">{{ $course->credits }}</a></td>
-                            <td>
-                                <a href="{{ $href }}" class="btn btn-link">Update</a>
-                                <form method="post" action="{{ $href }}">
-                                    @method('delete')
-                                    @csrf
-                                    <x-primary-button
-                                        onclick="return confirm('Are you sure you wish to delete this section?')">
-                                        {{ __('Delete') }}
-                                    </x-primary-button>
-                                </form>
-                            </td>
+                            <td style="text-align: justify;"><a
+                                    href="{{ $href }}">{{ $course->description }}</a></td>
+
                         </tr>
                     @endforeach
                 </tbody>

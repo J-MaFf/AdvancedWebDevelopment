@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\Schedule;
 
 class ScheduleController extends Controller
 {
@@ -11,7 +15,14 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        // check if user is logged in
+        if (!Auth::check()) {
+            // return to login page
+            return to_route("login");
+        }
+        $schedules = DB::table("schedules")->paginate(20);
+        $id = Auth::id();
+        return view("schedules.index", ["schedules" => $schedules, "id" => $id]);
     }
 
     /**
@@ -33,9 +44,9 @@ class ScheduleController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Schedule $schedule)
     {
-        //
+        return view("schedules.show", ["schedule" => $schedule]);
     }
 
     /**

@@ -1,11 +1,16 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Courses') }}
+            <a href="{{ url('/') }}">{{ __('Home') }}</a> &nbsp; &nbsp; &nbsp; &nbsp;
+            <a href="{{ route('courses.index') }}">{{ __('Course Catalog') }}</a> &nbsp; &nbsp; &nbsp; &nbsp;
+
         </h2>
     </x-slot>
 
     <div class="py-12">
+        <div style="display: flex; justify-content: center;">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Add new Course') }}</h2>
+        </div>
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
             <form method="POST" action="{{ route('courses.store') }}">
@@ -14,8 +19,8 @@
                 <!-- Subject -->
                 <div>
                     <x-input-label for="subject" :value="__('Subject')" />
-                    <x-textarea id="subject" class="block mt-1 w-full" type="text" name="subject" :value="old('subject')"
-                        autofocus />
+                    <x-text-input id="subject" class="block mt-1 w-full" type="text" name="subject"
+                        :value="old('subject')" autofocus />
                     @error('subject')
                         <div class='alert alert-danger'>{{ $message }}</div>
                     @enderror
@@ -24,7 +29,7 @@
                 <!-- Number -->
                 <div>
                     <x-input-label for="number" :value="__('Number')" />
-                    <x-textarea id="number" class="block mt-1 w-full" type="text" name="number"
+                    <x-text-input id="number" class="block mt-1 w-full" type="text" name="number"
                         :value="old('number')" />
                     @error('number')
                         <div class='alert alert-danger'>{{ $message }}</div>
@@ -34,7 +39,7 @@
                 <!-- Title -->
                 <div>
                     <x-input-label for="title" :value="__('Title')" />
-                    <x-textarea id="title" class="block mt-1 w-full" name="title" :value="old('title')" />
+                    <x-text-input id="title" class="block mt-1 w-full" name="title" :value="old('title')" />
                     @error('title')
                         <div class='alert alert-danger'>{{ $message }}</div>
                     @enderror
@@ -43,7 +48,7 @@
                 <!-- Description -->
                 <div>
                     <x-input-label for="description" :value="__('Description')" />
-                    <x-textarea id="description" class="block mt-1 w-full" name="description" :value="old('description')" />
+                    <x-text-input id="description" class="block mt-1 w-full" name="description" :value="old('description')" />
                     @error('description')
                         <div class='alert alert-danger'>{{ $message }}</div>
                     @enderror
@@ -52,7 +57,7 @@
                 <!-- Credits -->
                 <div>
                     <x-input-label for="credits" :value="__('Credits')" />
-                    <x-textarea id="credits" class="block mt-1 w-full" name="credits" :value="old('credits')" />
+                    <x-text-input id="credits" class="block mt-1 w-full" name="credits" :value="old('credits')" />
                     @error('credits')
                         <div class='alert alert-danger'>{{ $message }}</div>
                     @enderror
@@ -61,7 +66,7 @@
                 <!-- Prereq -->
                 <div>
                     <x-input-label for="prereq" :value="__('Prereq')" />
-                    <x-textarea id="prereq" class="block mt-1 w-full" name="prereq" :value="old('prereq')" />
+                    <x-text-input id="prereq" class="block mt-1 w-full" name="prereq" :value="old('prereq')" />
                     @error('prereq')
                         <div class='alert alert-danger'>{{ $message }}</div>
                     @enderror
