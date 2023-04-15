@@ -1,11 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Courses') }}
+            <a href="{{ url('/') }}">{{ __('Home') }}</a> &nbsp; &nbsp; &nbsp; &nbsp;
+            <a href="{{ route('courses.index') }}">{{ __('Course Catalog') }}</a> &nbsp; &nbsp; &nbsp; &nbsp;
+
         </h2>
     </x-slot>
 
     <div class="py-12">
+        <div style="display: flex; justify-content: center;">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">{{ __('Edit Course') }}</h2>
+        </div>
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <form method="POST" action="{{ route('courses.update', $course->id) }}">
                 @method('put')
@@ -14,8 +20,8 @@
                 <!-- Subject -->
                 <div>
                     <x-input-label for="subject" :value="__('Subject')" />
-                    <x-text-input id="subject" class="block mt-1 w-full" type="text" name="subject" :value="old('subject', $course->subject)"
-                        autofocus />
+                    <x-text-input id="subject" class="block mt-1 w-full" type="text" name="subject"
+                        :value="old('subject', $course->subject)" autofocus />
                     @error('subject')
                         <div class='alert alert-danger'>{{ $message }}</div>
                     @enderror

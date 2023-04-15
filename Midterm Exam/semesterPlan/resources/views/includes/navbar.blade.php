@@ -15,10 +15,10 @@
                     <a class="nav-link" href="{{ route('courses.index') }}">View Course Catalog</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/schedule') }}">View Schedule of Classes</a>
+                    <a class="nav-link" href="{{ route('schedules.index') }}">View Schedule of Classes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/schedule') }}">View Semester Plan</a>
+                    <a class="nav-link" href="{{ route('semesterplans.index') }}">View Semester Plan</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">

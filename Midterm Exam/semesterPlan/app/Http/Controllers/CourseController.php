@@ -15,6 +15,11 @@ class CourseController extends Controller
      */
     public function index()
     {
+        // check if user is logged in
+        if (!Auth::check()) {
+            // return to login page
+            return to_route("login");
+        }
         $courses = DB::table("courses")->paginate(20);
         $id = Auth::id();
         return view("courses.index", ["courses" => $courses, "id" => $id]);
