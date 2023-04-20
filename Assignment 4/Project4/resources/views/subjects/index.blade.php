@@ -34,8 +34,9 @@
                             <td><a href="{{ $href }}">{{ $subject->full_name }}</a></td>
                             <td>
                                 <!--Update and Delete buttons-->
-                                <a href="{{ $href }}" class="btn btn-link">Update</a>
+                                <a href="{{ route('subjects.edit', $subject->id) }}" class="btn btn-link">Update</a>
                                 <form method="post" action="{{ $href }}">
+                                    @method('delete')
                                     @csrf
                                     <x-primary-button
                                         onclick="return confirm('Are you sure you want to delete this subject?')">

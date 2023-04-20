@@ -87,7 +87,7 @@ class SubjectController extends Controller
         ]);
 
         // Return the list of subjects
-        return to_route("subjects.show")->with("status", "Subject updated successfully");
+        return to_route("subjects.show", $subject)->with("status", "Subject updated successfully");
     }
 
     /**
