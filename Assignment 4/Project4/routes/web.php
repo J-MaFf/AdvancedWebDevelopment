@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,26 +24,22 @@ Route::resource("subjects", SubjectController::class)->middleware(["auth"]);
 
 Route::resource("schedules", ScheduleController::class)->middleware(["auth"]);
 
+Route::resource("admin", AdminController::class)->middleware(["auth"]);
+
 Route::get("/", function () {
     return view("welcome");
 });
 
-Route::get("/dashboard", function () {
+Route::get("/", function () {
     return view("dashboard");
 })
     ->middleware(["auth", "verified"])
     ->name("dashboard");
 
 Route::middleware("auth")->group(function () {
-    Route::get("/profile", [ProfileController::class, "edit"])->name(
-        "profile.edit"
-    );
-    Route::patch("/profile", [ProfileController::class, "update"])->name(
-        "profile.update"
-    );
-    Route::delete("/profile", [ProfileController::class, "destroy"])->name(
-        "profile.destroy"
-    );
+    Route::get("/profile", [ProfileController::class, "edit"])->name("profile.edit");
+    Route::patch("/profile", [ProfileController::class, "update"])->name("profile.update");
+    Route::delete("/profile", [ProfileController::class, "destroy"])->name("profile.destroy");
 });
 
 require __DIR__ . "/auth.php";
