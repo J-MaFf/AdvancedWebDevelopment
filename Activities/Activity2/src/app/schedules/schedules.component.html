@@ -1,0 +1,36 @@
+<div>
+  <h2>Schedule information</h2>
+
+  <!--Print out schedule list-->
+  <!-- Create a table to print out schedule list-->
+
+  <table class="table table-hover table-striped">
+    <thead class="thead-dark">
+      <!-- Create table header-->
+      <tr>
+        <th>Id</th>
+        <th>Subject</th>
+        <th>Number</th>
+        <th>Section</th>
+        <th>Days</th>
+        <th>Time</th>
+        <th>Instructor</th>
+        <th>Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let schedule of scheduleList">
+        <td>{{ schedule.id }}</td>
+        <td>{{ schedule.subject }}</td>
+        <td>{{ schedule.number }}</td>
+        <td>{{ schedule.section }}</td>
+        <td>{{ schedule.days }}</td>
+        <td>{{ schedule.time }}</td>
+        <td>
+          <b>{{ schedule.instructor }}</b>
+        </td>
+        <td>{{ schedule.location }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
