@@ -11,22 +11,10 @@
                 @method('put')
                 @csrf
 
-                <!-- ID
-                <div>
-                    <x-input-label for="id" :value="__('ID')" />
-                    <x-textarea id="id" class="block mt-1 w-full" type="text" name="id" :value="old('id', $subject->id)"
-                        autofocus />
-                    @error('id')
-    <div class='alert alert-danger'>{{ $message }}</div>
-@enderror
-                </div>
-                -->
-
                 <!-- Subject -->
                 <div>
                     <x-input-label for="subject" :value="__('Subject')" />
-                    <x-textarea id="subject" class="block mt-1 w-full" type="text" name="subject"
-                        :value="old('subject', $subject->subject)" />
+                    <textarea id="subject" class="block mt-1 w-full" name="subject" :value="old('subject', $subject - > subject)" autofocus>{{ old('subject', $subject->subject) }}</textarea>
                     @error('subject')
                         <div class='alert alert-danger'>{{ $message }}</div>
                     @enderror
@@ -35,7 +23,7 @@
                 <!-- Full Name -->
                 <div>
                     <x-input-label for="full_name" :value="__('Full Name')" />
-                    <x-textarea id="full_name" class="block mt-1 w-full" name="full_name" :value="old('full_name', $subject->full_name)" />
+                    <textarea id="full_name" class="block mt-1 w-full" name="full_name" :value="old('full_name', $subject - > full_name)">{{ old('full_name', $subject->full_name) }}</textarea>
                     @error('full_name')
                         <div class='alert alert-danger'>{{ $message }}</div>
                     @enderror

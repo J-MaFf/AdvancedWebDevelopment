@@ -34,7 +34,7 @@
                             <td><a href="{{ $href }}">{{ $course->title }}</a></td>
                             <td><a href="{{ $href }}">{{ $course->credits }}</a></td>
                             <td>
-                                <a href="{{ $href }}" class="btn btn-link">Update</a>
+                                <a href="{{ route('courses.edit', $course->id) }}" class="btn btn-link">Update</a>
                                 <form method="post" action="{{ $href }}">
                                     @method('delete')
                                     @csrf

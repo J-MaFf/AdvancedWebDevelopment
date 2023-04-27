@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +22,15 @@ Route::resource("courses", CourseController::class)->middleware(["auth"]);
 
 Route::resource("subjects", SubjectController::class)->middleware(["auth"]);
 
+Route::resource("schedules", ScheduleController::class)->middleware(["auth"]);
+
+Route::resource("admin", AdminController::class)->middleware(["auth"]);
+
 Route::get("/", function () {
     return view("welcome");
 });
 
-Route::get("/dashboard", function () {
+Route::get("/", function () {
     return view("dashboard");
 })
     ->middleware(["auth", "verified"])

@@ -1,0 +1,30 @@
+/* create spacing between table collumns
+and center th and td 
+add collumn borders*/
+td,
+th {
+  padding: 3px;
+  text-align: center;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #f2f2f2;
+}
+
+/* Add padding between right and left edge of screen on div */
+div {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.thead-dark {
+  background-color: #343a40;
+  color: white;
+}
+/* add hover color to table rows */
+.table-hover tbody tr:hover td,
+.table-hover tbody tr:hover th {
+  background-color: rgb(173, 221, 179);
+  cursor: pointer;
+}
